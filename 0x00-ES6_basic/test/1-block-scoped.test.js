@@ -1,7 +1,10 @@
 import taskBlock from '../1-block-scoped';
 
-test('block-scoped', () => {
-  const mock = [false, true];
-  expect(taskBlock(true)).toEqual(mock);
-  expect(taskBlock(false)).toEqual(mock);
+describe('jest Test for 1-block-scoped jd file', () => {
+  it('block-scoped', () => {
+    expect.assertions(2);
+    const mock = [false, true];
+    expect(taskBlock(true)).toStrictEqual(mock);
+    expect(taskBlock(false)).toStrictEqual(mock);
+  });
 });
