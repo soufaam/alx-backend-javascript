@@ -29,11 +29,11 @@ export default class HolbertonCourse {
     }
   }
 
-  get lenght() {
+  get length() {
     return this._length;
   }
 
-  set lenght(length) {
+  set length(length) {
     if (typeof length === 'number') {
       this._length = length;
     } else {
