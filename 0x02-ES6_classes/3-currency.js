@@ -1,4 +1,4 @@
-export default class HolbertonCourse {
+export default class Currency {
   constructor(code, name) {
     if (typeof code === 'string') {
       this._code = name;
@@ -34,5 +34,9 @@ export default class HolbertonCourse {
     } else {
       throw TypeError('Name must be a string');
     }
+  }
+
+  displayFullCurrency() {
+    return `${this._name} (${this._code})`;
   }
 }
