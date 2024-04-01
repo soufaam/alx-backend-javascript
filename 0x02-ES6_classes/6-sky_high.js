@@ -14,9 +14,9 @@ export default class SkyHighBuilding extends Buiding {
     return this._floors;
   }
 
-  set floors(floors) {
+  set floors(val) {
     if (typeof floors === 'number') {
-      this._floors = floors;
+      this._floors = val;
     } else {
       throw TypeError('floors must be a number');
     }
