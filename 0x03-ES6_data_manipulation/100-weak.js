@@ -1,10 +1,14 @@
-export const weakMap = new WeakMap();
-export function queryAPI(api) {
-  if (weakMap.get(api) === undefined || Number.isNaN(weakMap.get(api))) {
+const weakMap = new WeakMap();
+const queryAPI = (api) => {
+  if (!weakMap.has(api)) {
     weakMap.set(api, 1);
-  } else if (weakMap.get(api) >= 5) {
-    throw new Error('Endpoint load is high');
   } else {
-    weakMap.set(api, weakMap.get(api) + 1);
+    const counter = weakMap.get(api);
+    if (counter >= 5) {
+      throw new Error('Endpoint load is high');
+    }
+    weakMap.set(api, counter + 1);
   }
-}
+};
+
+export { weakMap, queryAPI };
