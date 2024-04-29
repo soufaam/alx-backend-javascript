@@ -5,4 +5,10 @@ process.stdin.on('data', (data) => {
 });
 process.on('end', () => {
   console.log('This important software is now closing');
+  process.exit();
+});
+
+process.on('close', () => {
+  console.log('This important software is now closing');
+  process.exit();
 });
