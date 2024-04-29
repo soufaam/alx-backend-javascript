@@ -3,12 +3,6 @@ console.log('Welcome to Holberton School, what is your name?');
 process.stdin.on('data', (data) => {
   console.log(`Your name is: ${data.trim()}`);
 });
-process.on('end', () => {
+process.stdin.on('end', () => {
   console.log('This important software is now closing');
-  process.exit();
-});
-
-process.on('close', () => {
-  console.log('This important software is now closing');
-  process.exit();
 });
