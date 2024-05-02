@@ -1,15 +1,19 @@
+const http = require('http');
 const fs = require('fs').promises;
 
+const hostname = '0.0.0.0';
+const port = 1245;
 function countStudents(path) {
   return new Promise((resolve, reject) => {
     const obj = {};
     const studentObj = {};
     fs.readFile(path, 'utf-8')
       .then((data) => {
+        let str = '';
         const rows = data.split('\n');
         const values = rows.slice(1, rows.length - 1);
-        console.log(`Number of students: ${values.length}`);
-        const retunrValue = values.map((value) => {
+        str += `Number of students: ${values.length}\n`;
+        values.map((value) => {
           const splitValues = value.split(',');
           const key = splitValues[3];
           const studentName = splitValues[0];
@@ -26,9 +30,10 @@ function countStudents(path) {
           return splitValues;
         });
         for (const [key, value] of Object.entries(obj)) {
-          console.log(`Number of students in ${key}: ${value}. List: ${studentObj[key].join(', ')}`);
+          str += `Number of students in ${key}: ${value}. List: ${studentObj[key].join(', ')}\n`;
         }
-        resolve(retunrValue);
+        str = str.slice(0, str.length - 1);
+        resolve(str);
       })
       .catch(() => {
         reject(new Error('Cannot load the database'));
@@ -36,4 +41,25 @@ function countStudents(path) {
   });
 }
 
-module.exports = countStudents;
+const app = http.createServer((req, res) => {
+  if (req.method === 'GET' && req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello Holberton School!');
+  }
+  if (req.method === 'GET' && req.url === '/students') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    countStudents(process.argv[2].toString())
+      .then((data) => {
+        res.end(`This is the list of our students\n${data}`);
+      })
+      .catch((error) => {
+        res.end(`${error}`);
+      });
+  }
+});
+
+app.listen(port, hostname, () => {
+
+});
+
+module.exports = app;
