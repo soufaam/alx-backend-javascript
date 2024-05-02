@@ -14,12 +14,15 @@ describe('Calucate number', function() {
         assert.strictEqual(calculateNumber(-1, -2), -3);
     });
 
-    it('Rounded values', function(){
+    it('Rounded values should return 5 whep input = (1.2, 3.7)', function(){
         assert.strictEqual(calculateNumber(1.2, 3.7), 5)
     });
 
-    it('Rounded values', function(){
+    it('Rounded values should return 5 whep input = (1.5, 3.7)', function(){
         assert.strictEqual(calculateNumber(1.5, 3.7), 6)
     });
 
+    it('Rounded values should return 5 whep input = (-1.2, -3)', function(){
+        assert.strictEqual(calculateNumber(-1.2, -3), -4)
+    });
 });
