@@ -1,4 +1,4 @@
-function calculateNumber(a, b, type){
+function calculateNumber(type, a, b){
     if (type === 'SUM'){
       const sum = Math.round(a) + Math.round(b);
       return sum;
@@ -9,7 +9,7 @@ function calculateNumber(a, b, type){
         return sub;
     }
 
-    else if (type === 'DIV'){
+    else if (type === 'DIVIDE'){
         if (Math.round(b) === 0) {
             return 'Error'
         }
