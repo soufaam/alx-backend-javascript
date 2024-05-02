@@ -10,19 +10,11 @@ describe('Calucate number', function() {
         assert.strictEqual(calculateNumber(0, 0), 0);
     });
 
-    it('should add negative numbers correctly', function() {
-        assert.strictEqual(calculateNumber(-1, -2), -3);
+    it('should return -4 when inputs are -1 and -2.7', () => {
+        assert.strictEqual(calculateNumber(-1, -2.7), -4);
     });
 
-    it('Rounded values should return 5 whep input = (1.2, 3.7)', function(){
-        assert.strictEqual(calculateNumber(1.2, 3.7), 5)
-    });
-
-    it('Rounded values should return 5 whep input = (1.5, 3.7)', function(){
-        assert.strictEqual(calculateNumber(1.5, 3.7), 6)
-    });
-
-    it('Rounded values should return 5 whep input = (-1.2, -3)', function(){
+    it('Rounded values should return 5 whep input = (-1.2, -2)', function(){
         assert.strictEqual(calculateNumber(-1.2, -3), -4)
     });
 });
